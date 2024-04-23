@@ -3,11 +3,11 @@ requires = [ "setuptools", "setuptools_scm" ]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ILC"
+name = "ts-ilc"
 description = "LSST ILC utilities."
 license = { text = "GPL" }
 classifiers = [ "Programming Language :: Python :: 3" ]
-urls = { documentation = "https://ILC.lsst.io", repository = "https://github.com/lsst-ts/ILC" }
+urls = { documentation = "https://ts-ilc.lsst.io", repository = "https://github.com/lsst-ts/ts_ilc" }
 dynamic = [ "version" ]
 dependencies = [
   "crcmod",
@@ -15,7 +15,7 @@ dependencies = [
 ]
 
 [project.scripts]
-ihdiff = "lsst.ts.ilc.ihdiff:run"
+ilc-firmware-tool = "lsst.ts.ilc.ilc_firmware_tool:run"
 
 [tool.setuptools.dynamic]
 version = { attr = "setuptools_scm.get_version" }

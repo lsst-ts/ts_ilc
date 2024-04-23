@@ -1,0 +1,37 @@
+{% set data = load_setup_py_data() %}
+
+package:
+  name: ts-criopy
+  version: {{ data.get('version') }}
+
+source:
+  path: ../
+
+build:
+  noarch: python
+  script: {{PYTHON}} -m pip install --no-deps --ignore-installed .
+  entry_points:
+    - ilc-firmware-tool = lsst.ts.ilc.ils_firmware_tool:run
+
+test:
+  requires:
+    - ts-conda-build =0.4
+  source_files:
+    - python
+    - tests
+  commands:
+    - pytest
+
+requirements:
+  build:
+  host:
+    - python {{python}}
+    - setuptools
+    - setuptools_scm
+  build:
+    - python {{python}}
+    - ts-conda-build =0.4
+  run:
+    - python {{python}}
+    - crcmod
+    - intelhex
