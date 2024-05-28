@@ -28,3 +28,5 @@ else:
         from .version import *
     except ImportError:
         __version__ = "?"
+
+from .ilc_hex import ILCHex
