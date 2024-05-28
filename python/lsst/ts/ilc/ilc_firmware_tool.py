@@ -75,6 +75,8 @@ def run() -> None:
         print("This isn't a hex dump: " + str(er))
 
     if args.ivt is True:
+        # address 0x1600 (in words - 2 bytes) = 0x2c00 (in bytes). Comes from
+        # ILC linkmap files
         memhex.print_ivt(0x1600)
 
     if args.diff is not None:
