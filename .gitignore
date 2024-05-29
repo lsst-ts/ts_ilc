@@ -1,4 +1,5 @@
 .sconsign.dblite
+.pre-commit-config.yaml
 config.log
 .sconf_temp
 *.o

@@ -136,8 +136,8 @@ class ILCHex(IntelHex):
         """
         for s in self.segments():
             if s[0] <= start and start < s[1]:
-                a = start + length
-                if a > s[1]:
+                end = start + length
+                if end > s[1]:
                     return False
                 return True
         return False
