@@ -1,4 +1,5 @@
 .sconsign.dblite
+.pre-commit-config.yaml
 config.log
 .sconf_temp
 *.o
@@ -19,3 +20,10 @@ pytest_session.txt
 .cache/
 .pytest_cache
 .coverage
+.pre-commit-config.yaml
+.clang-format
+.flake8
+.isort.cfg
+.mypy.ini
+.ruff.toml
+towncrier.toml

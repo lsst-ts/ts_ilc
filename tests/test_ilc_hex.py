@@ -1,6 +1,6 @@
 # This file is part of ts_ilc.
 #
-# Developed for the LSST Data Management System.
+# Developed for the Rubin Observatory Telescope and Site System.
 # This product includes software developed by the LSST Project
 # (https://www.lsst.org).
 # See the COPYRIGHT file at the top-level directory of this distribution
@@ -19,14 +19,28 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import typing
+import os
+import pathlib
+import unittest
 
-if typing.TYPE_CHECKING:
-    __version__ = "?"
-else:
-    try:
-        from .version import *
-    except ImportError:
-        __version__ = "?"
+from lsst.ts.ilc import ILCHex
 
-from .ilc_hex import ILCHex
+
+class ILCHexTestCase(unittest.TestCase):
+    def test_loading(self) -> None:
+        ilchex = ILCHex(
+            open(
+                pathlib.Path(os.path.dirname(os.path.abspath(__file__)))
+                / "data"
+                / "ilc.hex"
+            ),
+            "Loading test data ilc.hex",
+        )
+        self.assertEqual(ilchex.rd_latch(0x1600), 0x1BE6)
+        self.assertEqual(ilchex.has_range(0x2BFF, 1), False)
+        self.assertEqual(ilchex.has_range(0x2C00, 1), True)
+        self.assertRaises(ILCHex.NotInRangeError, ilchex.verify)
+
+
+if __name__ == "__main__":
+    unittest.main()
